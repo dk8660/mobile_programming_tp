@@ -41,73 +41,11 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/logo"/>
 
-            <ScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/professorRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/professor_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <!-- Example professor entry -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <ImageView
-                            android:id="@+id/professor_picture"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_weight="1"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_menu"/>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3"
-                            android:orientation="vertical"
-                            android:paddingStart="16dp">
-
-                            <TextView
-                                android:id="@+id/professor_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="김대한"
-                                android:textSize="16sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:id="@+id/professor_field"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="컴퓨터 공학"
-                                android:textSize="14sp"
-                                android:layout_marginTop="4dp"/>
-
-                            <TextView
-                                android:id="@+id/professor_email"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="dk8660@hufs.ac.kr"
-                                android:textSize="14sp"
-                                android:layout_marginTop="4dp"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </ScrollView>
+                android:layout_height="match_parent"
+                android:padding="16dp" />
 
         </LinearLayout>
 

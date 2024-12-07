@@ -6,9 +6,14 @@ import android.view.View
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.roomtest.Professor
+import com.example.roomtest.ProfessorDatabase
 import com.example.teamproject.databinding.FragmentMainBinding
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -19,6 +24,25 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentMainBinding.bind(view)
+
+        // RecyclerView 초기화
+                binding.professorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Room 데이터베이스에서 교수 정보 불러오기
+        val database = ProfessorDatabase.getInstance(requireContext())
+        val professorDao = database.professorDao()
+
+        lifecycleScope.launch {
+            // 임시 데이터 삽입
+//            val sampleData = listOf(
+//                Professor(name = "김낙현", degree = "공학박사", university = "University of Texas Austin", field = "컴퓨터비젼, 멀티미디어 신호처리, 멀티미디어 소프트웨어개발", email = "nhkim@hufs.ac.kr", lab = "공학관 420호, 백년관 801호"),
+//                Professor(name = "김상철", degree = "공학박사", university = "Michigan State University", field = "멀티미디어시스템, 컴퓨터게임", email = "kimsa@hufs.ac.kr", lab = "공학관 416호")
+//            )
+//            sampleData.forEach { professorDao.insert(it) }
+            val professors = professorDao.getAll().toList() // Room에서 데이터 가져오기
+            val adapter = ProfessorAdapter(professors)
+            binding.professorRecyclerView.adapter = adapter
+        }
 
         // 메뉴 버튼 클릭 시 드로어 열기
         binding.menuButton.setOnClickListener {
