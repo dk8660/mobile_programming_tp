@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.teamproject.ProfCreateViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -32,6 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prof_name_hint"
+                    android:text="@={viewModel.name}"
                     android:inputType="textPersonName"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +52,8 @@
                     android:id="@+id/profDegreeInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prof_degree_hint"/>
+                    android:hint="@string/prof_degree_hint"
+                    android:text="@={viewModel.degree}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -58,7 +66,8 @@
                     android:id="@+id/profUniversityInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prof_university_hint"/>
+                    android:hint="@string/prof_university_hint"
+                    android:text="@={viewModel.university}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -72,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prof_field_hint"
+                    android:text="@={viewModel.field}"
                     android:inputType="textMultiLine"
                     android:minLines="2"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -87,6 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prof_email_hint"
+                    android:text="@={viewModel.email}"
                     android:inputType="textEmailAddress"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +111,8 @@
                     android:id="@+id/profLabInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prof_lab_hint"/>
+                    android:hint="@string/prof_lab_hint"
+                    android:text="@={viewModel.lab}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout

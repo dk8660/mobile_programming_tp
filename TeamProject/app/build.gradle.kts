@@ -32,7 +32,6 @@ android {
         }
     }
     buildFeatures {
-        //noinspection DataBindingWithoutKapt
         dataBinding = true
     }
     compileOptions {
@@ -71,4 +70,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 }

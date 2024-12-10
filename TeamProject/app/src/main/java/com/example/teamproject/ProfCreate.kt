@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.example.roomtest.ProfessorDatabase
 import com.example.teamproject.databinding.FragmentProfCreateBinding
 import com.example.roomtest.Professor
@@ -31,7 +32,10 @@ class ProfCreate : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding: FragmentProfCreateBinding
+    private var _binding: FragmentProfCreateBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel: ProfCreateViewModel by viewModels()
+
     private lateinit var db: ProfessorDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +50,16 @@ class ProfCreate : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
+        _binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_prof_create,
             container,
             false
         )
+        
+        // 이 두 줄이 중요합니다!
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         
         // 데이터베이스 초기화
         db = ProfessorDatabase.getInstance(requireContext())
@@ -76,41 +84,40 @@ class ProfCreate : Fragment() {
 
     private fun validateInputs(): Boolean {
         var isValid = true
+        val name = viewModel.name.value ?: ""
+        val degree = viewModel.degree.value ?: ""
+        val university = viewModel.university.value ?: ""
+        val field = viewModel.field.value ?: ""
+        val email = viewModel.email.value ?: ""
+        val lab = viewModel.lab.value ?: ""
         
-        // 이름 필드 검증
-        if (binding.profNameInput.text.toString().trim().isEmpty()) {
+        if (name.isBlank()) {
             binding.profNameInput.error = "이름을 입력해주세요"
             isValid = false
         }
         
-        // 학위 필드 검증
-        if (binding.profDegreeInput.text.toString().trim().isEmpty()) {
+        if (degree.isBlank()) {
             binding.profDegreeInput.error = "학위를 입력해주세요"
             isValid = false
         }
         
-        // 대학교 필드 검증
-        if (binding.profUniversityInput.text.toString().trim().isEmpty()) {
+        if (university.isBlank()) {
             binding.profUniversityInput.error = "대학교를 입력해주세요"
             isValid = false
         }
         
-        // 전공 분야 검증
-        if (binding.profFieldInput.text.toString().trim().isEmpty()) {
+        if (field.isBlank()) {
             binding.profFieldInput.error = "전공 분야를 입력해주세요"
             isValid = false
         }
         
-        // 이메일 형식 검증
         val emailPattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]+"
-        val email = binding.profEmailInput.text.toString().trim()
-        if (email.isEmpty() || !email.matches(emailPattern.toRegex())) {
+        if (email.isBlank() || !email.matches(emailPattern.toRegex())) {
             binding.profEmailInput.error = "올바른 이메일 형식을 입력해주세요"
             isValid = false
         }
         
-        // 연구실 필드 검증
-        if (binding.profLabInput.text.toString().trim().isEmpty()) {
+        if (lab.isBlank()) {
             binding.profLabInput.error = "연구실을 입력해주세요"
             isValid = false
         }
@@ -121,12 +128,12 @@ class ProfCreate : Fragment() {
     private suspend fun createProfessor() {
         try {
             val professor = Professor(
-                name = binding.profNameInput.text.toString(),
-                degree = binding.profDegreeInput.text.toString(),
-                university = binding.profUniversityInput.text.toString(),
-                field = binding.profFieldInput.text.toString(),
-                email = binding.profEmailInput.text.toString(),
-                lab = binding.profLabInput.text.toString()
+                name = viewModel.name.value ?: "",
+                degree = viewModel.degree.value ?: "",
+                university = viewModel.university.value ?: "",
+                field = viewModel.field.value ?: "",
+                email = viewModel.email.value ?: "",
+                lab = viewModel.lab.value ?: ""
             )
             
             withContext(Dispatchers.IO) {
@@ -164,3 +171,4 @@ class ProfCreate : Fragment() {
             }
     }
 }
+
