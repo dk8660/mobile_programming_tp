@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/fragment_prof_create"
-        android:name="com.example.teamproject.profCreate"
+        android:name="com.example.teamproject.ProfCreate"
         android:label="Create Professor"
         tools:layout="@layout/fragment_prof_create" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_prof_update"
-        android:name="com.example.teamproject.profUpdate"
+        android:name="com.example.teamproject.ProfUpdate"
         android:label="Update Professor"
         tools:layout="@layout/fragment_prof_update" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_prof_delete"
-        android:name="com.example.teamproject.profDelete"
+        android:name="com.example.teamproject.ProfDelete"
         android:label="Delete Professor"
         tools:layout="@layout/fragment_prof_delete" >
         <action

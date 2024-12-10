@@ -13,10 +13,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [profDelete.newInstance] factory method to
+ * Use the [ProfUpdate.newInstance] factory method to
  * create an instance of this fragment.
  */
-class profDelete : Fragment() {
+class ProfUpdate : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +34,7 @@ class profDelete : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prof_delete, container, false)
+        return inflater.inflate(R.layout.fragment_prof_update, container, false)
     }
 
     companion object {
@@ -44,12 +44,12 @@ class profDelete : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment profDelete.
+         * @return A new instance of fragment profUpdate.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            profDelete().apply {
+            ProfUpdate().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
