@@ -9,12 +9,12 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.databinding.DataBindingUtil
-import com.example.roomtest.ProfessorDao
+import com.example.teamproject.ProfessorDao
 import com.example.teamproject.databinding.FragmentProfDeleteBinding
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
-import com.example.roomtest.ProfessorDatabase
-import com.example.roomtest.Professor
+import com.example.teamproject.ProfessorDatabase
+import com.example.teamproject.Professor
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamproject.databinding.ItemProfessorDeleteBinding
 import android.widget.CompoundButton

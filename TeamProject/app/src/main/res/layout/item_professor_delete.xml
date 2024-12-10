@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     
     <data>
-        <import type="com.example.roomtest.Professor"/>
+        <import type="com.example.teamproject.Professor"/>
         <variable
             name="professor"
             type="Professor" />
