@@ -102,7 +102,7 @@ class ProfCreate : Fragment() {
         }
         
         // 이메일 형식 검증
-        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+        val emailPattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]+"
         val email = binding.profEmailInput.text.toString().trim()
         if (email.isEmpty() || !email.matches(emailPattern.toRegex())) {
             binding.profEmailInput.error = "올바른 이메일 형식을 입력해주세요"
