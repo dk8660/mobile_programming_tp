@@ -21,7 +21,7 @@ import android.widget.CompoundButton
 
 /**
  * A simple [Fragment] subclass.
- * Use the [profDelete.newInstance] factory method to
+ * Use the [ProfDelete.newInstance] factory method to
  * create an instance of this fragment.
  */
 class ProfDelete : Fragment() {
