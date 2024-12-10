@@ -33,7 +33,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val professorDao = database.professorDao()
 
         lifecycleScope.launch {
-            // 임시 데이터 삽입
+//            //   임시 데이터 삽입
 //            val sampleData = listOf(
 //                Professor(name = "김낙현", degree = "공학박사", university = "University of Texas Austin", field = "컴퓨터비젼, 멀티미디어 신호처리, 멀티미디어 소프트웨어개발", email = "nhkim@hufs.ac.kr", lab = "공학관 420호, 백년관 801호"),
 //                Professor(name = "김상철", degree = "공학박사", university = "Michigan State University", field = "멀티미디어시스템, 컴퓨터게임", email = "kimsa@hufs.ac.kr", lab = "공학관 416호")
@@ -60,10 +60,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     // 교수 정보 추가 클릭 시 이동
                     findNavController().navigate(R.id.action_main_to_prof_create)
                 }
-                R.id.action_main_to_prof_update -> {
-                    // 교수 정보 수정 클릭 시 이동
-                    findNavController().navigate(R.id.action_main_to_prof_update)
-                }
+//                R.id.action_main_to_prof_update -> {
+//                    // 교수 정보 수정 클릭 시 이동
+//                    findNavController().navigate(R.id.action_main_to_prof_update)
+//                }
                 R.id.action_main_to_prof_delete -> {
                     // 교수 정보 삭제 클릭 시 이동
                     findNavController().navigate(R.id.action_main_to_prof_delete)

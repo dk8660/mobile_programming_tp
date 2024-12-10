@@ -16,7 +16,7 @@ abstract class ProfessorDatabase: RoomDatabase() {
                 Room.databaseBuilder(
                     context.applicationContext,
                     ProfessorDatabase::class.java,
-                    "student_database"
+                    "professor_database"
                 )
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()

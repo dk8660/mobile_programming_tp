@@ -4,10 +4,10 @@
         android:id="@+id/action_main_to_prof_create"
         android:title="교수 정보 추가"
         android:icon="@drawable/ic_add" />
-    <item
-        android:id="@+id/action_main_to_prof_update"
-        android:title="교수 정보 수정"
-        android:icon="@drawable/ic_edit" />
+<!--    <item-->
+<!--        android:id="@+id/action_main_to_prof_update"-->
+<!--        android:title="교수 정보 수정"-->
+<!--        android:icon="@drawable/ic_edit" />-->
     <item
         android:id="@+id/action_main_to_prof_delete"
         android:title="교수 정보 삭제"
