@@ -14,9 +14,6 @@
             android:id="@+id/action_main_to_prof_create"
             app:destination="@id/fragment_prof_create" />
         <action
-            android:id="@+id/action_main_to_prof_update"
-            app:destination="@id/fragment_prof_update" />
-        <action
             android:id="@+id/action_main_to_prof_delete"
             app:destination="@id/fragment_prof_delete" />
         <action
@@ -38,9 +35,6 @@
         android:name="com.example.teamproject.ProfUpdate"
         android:label="Update Professor"
         tools:layout="@layout/fragment_prof_update" >
-        <action
-            android:id="@+id/action_fragment_prof_update_to_main"
-            app:destination="@id/fragment_main" />
         <action
             android:id="@+id/action_fragment_prof_update_to_info"
             app:destination="@id/fragment_prof_info"/>
