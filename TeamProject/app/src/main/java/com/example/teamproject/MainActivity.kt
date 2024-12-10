@@ -1,16 +1,14 @@
 package com.example.teamproject
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
-
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
+import com.example.teamproject.Professor
 
 class MainActivity : AppCompatActivity() {
+    var selectedProfessor: Professor? = null  // 데이터를 저장할 프로퍼티 추가
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         // 네비게이션 그래프를 설정
         navController.setGraph(R.navigation.nav_graph)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -11,10 +11,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+<<<<<<< HEAD
 import androidx.fragment.app.viewModels
 import com.example.roomtest.ProfessorDatabase
+=======
+import com.example.teamproject.ProfessorDatabase
+>>>>>>> dd5a335d733955c8398b80e473932138d4e71b0e
 import com.example.teamproject.databinding.FragmentProfCreateBinding
-import com.example.roomtest.Professor
+import com.example.teamproject.Professor
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match

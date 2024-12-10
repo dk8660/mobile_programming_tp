@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.roomtest.Professor
-import com.example.roomtest.ProfessorDatabase
+import com.example.teamproject.Professor
+import com.example.teamproject.ProfessorDatabase
 import com.example.teamproject.databinding.FragmentMainBinding
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
@@ -40,7 +40,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 //            )
 //            sampleData.forEach { professorDao.insert(it) }
             val professors = professorDao.getAll().toList() // Room에서 데이터 가져오기
-            val adapter = ProfessorAdapter(professors)
+            val adapter = ProfessorAdapter(professors) {professor ->
+                (requireActivity() as MainActivity).selectedProfessor = professor
+                findNavController().navigate(R.id.action_main_to_prof_info)
+            }
             binding.professorRecyclerView.adapter = adapter
         }
 
@@ -75,4 +78,5 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onDestroyView()
         _binding = null
     }
+
 }
