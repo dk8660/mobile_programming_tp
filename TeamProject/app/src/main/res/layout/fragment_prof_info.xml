@@ -54,19 +54,35 @@
         android:layout_marginBottom="8dp"/>
 
     <TextView
-        android:id="@+id/professorWebsiteTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prof_website"
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
         android:id="@+id/professorLabTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/prof_lab"
         android:textSize="16sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정보 수정하기"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="뒤로 가기"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/cardview_dark_background"
+            app:layout_constraintStart_toEndOf="@id/btnUpdate"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
 </layout>

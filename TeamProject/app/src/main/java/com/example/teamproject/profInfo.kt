@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.teamproject.databinding.FragmentProfInfoBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,7 +23,8 @@ class profInfo : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding: FragmentProfInfoBinding
+    private var _binding: FragmentProfInfoBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,32 +35,29 @@ class profInfo : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentProfInfoBinding.inflate(inflater, container, false)
+        _binding = FragmentProfInfoBinding.inflate(inflater, container, false)
+        binding.btnUpdate.setOnClickListener { findNavController().navigate(R.id.action_fragment_prof_info_to_update) }
+        binding.btnBack.setOnClickListener { findNavController().navigate(R.id.action_fragment_prof_info_to_main) }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var name = "김태호"
-        var degree = "공학박사"
-        var univ = "KAIST"
-        var field = "딥러닝"
-        var email = "taeho99@hufs.ac.kr"
-        var webSite = "www.kth.com"
-        var lab = "공학관 101호"
+        val professor = (requireActivity() as MainActivity).selectedProfessor
 
-        binding.professorNameTextView.text = getString(R.string.prof_name, name)
-        binding.professorDegreeTextView.text = getString(R.string.prof_degree, degree)
-        binding.professorUnivTextView.text = getString(R.string.prof_university, univ)
-        binding.professorFieldTextView.text = getString(R.string.prof_field, field)
-        binding.professorEmailTextView.text = getString(R.string.prof_email, email)
-        binding.professorWebsiteTextView.text = getString(R.string.prof_website, webSite)
-        binding.professorLabTextView.text = getString(R.string.prof_lab, lab)
+        professor?.let {
+            binding.professorNameTextView.text = getString(R.string.prof_name, it.name)
+            binding.professorDegreeTextView.text = getString(R.string.prof_degree, it.degree)
+            binding.professorUnivTextView.text = getString(R.string.prof_university, it.university)
+            binding.professorFieldTextView.text = getString(R.string.prof_field, it.field)
+            binding.professorEmailTextView.text = getString(R.string.prof_email, it.email)
+            binding.professorLabTextView.text = getString(R.string.prof_lab, it.lab)
+        }
     }
 
     companion object {

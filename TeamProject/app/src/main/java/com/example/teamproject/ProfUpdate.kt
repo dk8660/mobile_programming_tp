@@ -5,6 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.teamproject.databinding.FragmentMainBinding
+import com.example.teamproject.databinding.FragmentProfInfoBinding
+import com.example.teamproject.databinding.FragmentProfUpdateBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +30,10 @@ class ProfUpdate : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var _binding: FragmentProfUpdateBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var db: ProfessorDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +47,116 @@ class ProfUpdate : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prof_update, container, false)
+        _binding = FragmentProfUpdateBinding.inflate(inflater, container, false)
+        db = ProfessorDatabase.getInstance(requireContext())
+
+        setupButtonListeners()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // 현재 교수 정보 표시
+        val currentProfessor = (requireActivity() as MainActivity).selectedProfessor
+        currentProfessor?.let {
+            binding.profNameInput.setText(it.name)
+            binding.profDegreeInput.setText(it.degree)
+            binding.profUniversityInput.setText(it.university)
+            binding.profFieldInput.setText(it.field)
+            binding.profEmailInput.setText(it.email)
+            binding.profLabInput.setText(it.lab)
+        }
+    }
+
+    private fun setupButtonListeners() {
+        binding.updateButton.setOnClickListener {
+            if (validateInputs()) {
+                lifecycleScope.launch {
+                    updateProfessor()
+                }
+            }
+        }
+
+        binding.cancelButton.setOnClickListener {
+            findNavController().navigate(R.id.action_fragment_prof_update_to_info)
+        }
+    }
+
+    private fun validateInputs(): Boolean {
+        var isValid = true
+
+        // 이름 필드 검증
+        if (binding.profNameInput.text.toString().trim().isEmpty()) {
+            binding.profNameInput.error = "이름을 입력해주세요"
+            isValid = false
+        }
+
+        // 학위 필드 검증
+        if (binding.profDegreeInput.text.toString().trim().isEmpty()) {
+            binding.profDegreeInput.error = "학위를 입력해주세요"
+            isValid = false
+        }
+
+        // 대학교 필드 검증
+        if (binding.profUniversityInput.text.toString().trim().isEmpty()) {
+            binding.profUniversityInput.error = "대학교를 입력해주세요"
+            isValid = false
+        }
+
+        // 전공 분야 검증
+        if (binding.profFieldInput.text.toString().trim().isEmpty()) {
+            binding.profFieldInput.error = "전공 분야를 입력해주세요"
+            isValid = false
+        }
+
+        // 이메일 형식 검증
+        val emailPattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]+"
+        val email = binding.profEmailInput.text.toString().trim()
+        if (email.isEmpty() || !email.matches(emailPattern.toRegex())) {
+            binding.profEmailInput.error = "올바른 이메일 형식을 입력해주세요"
+            isValid = false
+        }
+
+        // 연구실 필드 검증
+        if (binding.profLabInput.text.toString().trim().isEmpty()) {
+            binding.profLabInput.error = "연구실을 입력해주세요"
+            isValid = false
+        }
+
+        return isValid
+    }
+
+    private suspend fun updateProfessor() {
+        try {
+            val currentProfessor = (requireActivity() as MainActivity).selectedProfessor
+
+            val update_prof = Professor(
+                id = currentProfessor?.id ?: 0,  // 기존 교수의 ID 유지
+                name = binding.profNameInput.text.toString(),
+                degree = binding.profDegreeInput.text.toString(),
+                university = binding.profUniversityInput.text.toString(),
+                field = binding.profFieldInput.text.toString(),
+                email = binding.profEmailInput.text.toString(),
+                lab = binding.profLabInput.text.toString()
+            )
+
+            withContext(Dispatchers.IO) {
+                db.professorDao().update(update_prof)
+            }
+
+            // MainActivity의 selectedProfessor 업데이트
+            (requireActivity() as MainActivity).selectedProfessor = update_prof
+
+            withContext(Dispatchers.Main) {
+                Toast.makeText(requireContext(), "교수 정보가 수정되었습니다.", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_fragment_prof_update_to_main)
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(requireContext(), "수정 중 오류가 발생했습니다: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     companion object {

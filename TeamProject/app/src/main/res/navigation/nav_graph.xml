@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_fragment_prof_update_to_main"
             app:destination="@id/fragment_main" />
+        <action
+            android:id="@+id/action_fragment_prof_update_to_info"
+            app:destination="@id/fragment_prof_info"/>
     </fragment>
     <fragment
         android:id="@+id/fragment_prof_delete"
@@ -59,5 +62,8 @@
         <action
             android:id="@+id/action_fragment_prof_info_to_main"
             app:destination="@id/fragment_main" />
+        <action
+            android:id="@+id/action_fragment_prof_info_to_update"
+            app:destination="@id/fragment_prof_update"/>
     </fragment>
 </navigation>
