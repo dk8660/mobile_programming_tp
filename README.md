@@ -88,7 +88,7 @@ TeamProject/
 
 ---
 
-### 3. Database Schema (Optional)
+### 3. Database Schema
 > Visual representation of the Room database structure
 
 
