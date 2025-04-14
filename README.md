@@ -77,7 +77,7 @@ TeamProject/
 
 📌 *Slide 3: Navigation Graph*
 
-![](./screenshots/slide3.png)
+![](./screenshot/slide3.png)
 
 ---
 
@@ -85,7 +85,7 @@ TeamProject/
 
 | Main Page             | Add Page              | Edit Page             |
 |-----------------------|-----------------------|-----------------------|
-| ![](./screenshots/slide4.png) | ![](./screenshots/slide5.png) | ![](./screenshots/slide6.png) |
+| ![](./screenshot/slide4.png) | ![](./screenshot/slide5.png) | ![](./screenshot/slide6.png) |
 
 ---
 
@@ -94,7 +94,7 @@ TeamProject/
 
 📌 *Slide 8: DB Structure*
 
-![](./screenshots/slide8.png)
+![](./screenshot/slide8.png)
 
 ---
 
