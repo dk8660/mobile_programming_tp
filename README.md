@@ -75,7 +75,6 @@ TeamProject/
 ### 1. App Navigation Overview
 > Overall navigation structure of the application
 
-📌 *Slide 3: Navigation Graph*
 
 ![](./screenshot/slide3.png)
 
@@ -92,7 +91,6 @@ TeamProject/
 ### 3. Database Schema (Optional)
 > Visual representation of the Room database structure
 
-📌 *Slide 8: DB Structure*
 
 ![](./screenshot/slide8.png)
 
